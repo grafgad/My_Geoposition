@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Geoposition</string>
+    <string name="marker_annotation">marker_annotation</string>
+    <string name="marker_name">marker_name</string>
 </resources>
