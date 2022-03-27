@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.mygeoposition.data.PlaceRepository
 import com.example.mygeoposition.databinding.FragmentMarkersBinding
 
 class MarkersFragment: Fragment() {
@@ -12,6 +13,7 @@ class MarkersFragment: Fragment() {
     private var _binding: FragmentMarkersBinding? = null
     private val binding get() = _binding!!
     private val adapter = MarkerAdapter()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +27,8 @@ class MarkersFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.markersRecycler.adapter = adapter
-        adapter.setData()
+
+        adapter.setData(PlaceRepository.markersList)
     }
 
     override fun onDestroy() {

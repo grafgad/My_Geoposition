@@ -28,8 +28,8 @@ class MapsFragment : Fragment() {
     private val binding get() = _binding!!
     private var mapFragment: SupportMapFragment? = null
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private lateinit var myLocation : LatLng
-    private lateinit var myMarker : Place
+    private lateinit var myLocation: LatLng
+    private lateinit var myMarker: Place
 
     private val findMe = OnMapReadyCallback { googleMap ->
         googleMap.addMarker(
@@ -56,7 +56,14 @@ class MapsFragment : Fragment() {
                 .position(myMarker.latLong)
                 .snippet(myMarker.annotation)
         )
-        MARKERSLIST.add(myMarker)
+        PlaceRepository.markersList.add(myMarker.copy())
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireContext())
+        checkLocationPermission()
     }
 
     override fun onCreateView(
@@ -65,9 +72,6 @@ class MapsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMapsBinding.inflate(inflater, container, false)
-        fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireContext())
-        checkLocationPermission()
         return binding.root
     }
 
@@ -94,7 +98,7 @@ class MapsFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     private fun checkLocationPermission() {
-        myLocation = LatLng(0.0,0.0)
+        myLocation = LatLng(0.0, 0.0)
         val task: Task<Location> = fusedLocationProviderClient.lastLocation
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -111,7 +115,7 @@ class MapsFragment : Fragment() {
             return
         }
         task.addOnSuccessListener {
-            myLocation= LatLng(it.latitude, it.longitude)
+            myLocation = LatLng(it.latitude, it.longitude)
         }
     }
 
@@ -122,6 +126,5 @@ class MapsFragment : Fragment() {
 
     companion object {
         fun newInstance() = MapsFragment()
-        var MARKERSLIST = PlaceRepository().getMarkersList()
     }
 }
