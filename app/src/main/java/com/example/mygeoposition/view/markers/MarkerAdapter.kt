@@ -1,4 +1,4 @@
-package com.example.mygeoposition.view
+package com.example.mygeoposition.view.markers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.mygeoposition.R
 import com.example.mygeoposition.databinding.FragmentMapsBinding
+import com.example.mygeoposition.view.markers.MarkersFragment
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng

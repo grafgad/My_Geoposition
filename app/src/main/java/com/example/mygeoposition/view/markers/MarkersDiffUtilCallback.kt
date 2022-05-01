@@ -1,4 +1,4 @@
-package com.example.mygeoposition.view
+package com.example.mygeoposition.view.markers
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.mygeoposition.model.Place
